@@ -1,0 +1,43 @@
+<style>
+    
+
+.photo-container {
+    background: linear-gradient(to bottom, #143952, #687d89);
+    
+    background-size: cover;
+    background-position: center;
+    width: 100%; 
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.photo-label {
+    color: rgb(255, 255, 255);
+}
+
+
+.photo-description {
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+</style>
+
+
+<div class="photo-container" *ngIf="data.fotos && data.fotos.length > 0">
+    <div *ngIf="data.foto">
+        <p class="photo-label">Foto: {{ data.foto }}</p>
+        <br>
+    </div>
+    <div *ngFor="let foto of data.fotos">
+        <ng-container *ngIf="foto.trim() !== ''">
+            <p class="photo-description">{{ foto }}</p>
+            <br>
+        </ng-container>
+    </div>
+</div>

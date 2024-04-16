@@ -1,0 +1,131 @@
+<div class="custom-scroll">
+
+
+    <div class="sos">
+        <h3 class="sos-r1">Editar Registro</h3>
+    </div>
+
+    <style type="text/css">
+        .sos {
+            color: white;
+            background: linear-gradient(to bottom, #2e7fb5, #9dbed3);
+            text-align: center;
+            font-family: Source Sans Pro, sans-serif;
+            line-height: 3em;
+            padding-top: 15px;
+            padding-bottom: 11px;
+        }
+
+        .sos-r1 {
+            font-size: 70px;
+            font-weight: 900;
+            line-height: 1.1em;
+        }
+
+        .sos-prep {
+            font-family: Playfair Display;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 0.5em;
+            vertical-align: middle;
+            margin-top: -0.4em;
+            display: inline-block;
+        }
+    </style>
+    <div mat-dialog-content>
+        <form [formGroup]="anomaliaExpedienteForm">
+
+            <div>
+                <label>Nro Expediente:</label>
+                <input type="text" readonly formControlName="nroExpediente" />
+                <h1></h1>
+            </div>
+
+            <div>
+                <label>Caso:</label>
+                <input type="text" formControlName="caso" />
+            </div>
+
+            <div>
+                <label>Codigo:</label>
+                <input type="text" formControlName="codigo" />
+            </div>
+            <!-- <div>
+                <label>Otros <input type="text" readonly="otros"></label>
+            </div> -->
+            <div>
+                <label>Descripcion:</label>
+                <input type="text" formControlName="descripcion" />
+            </div>
+            <div>
+                <label>Fecha:</label>
+                <input type="text" formControlName="fecha" />
+            </div>
+            <hr>
+            <br>
+            <label for="fotos">Fotos:</label>
+            <!-- Ejemplo de cómo manejar un array de fotos -->
+            <div formArrayName="fotos">
+                <div *ngFor="let fotoControl of fotosFormArray.controls; let i = index">
+                    <input type="text" [formControlName]="i" style="width: 500px;" /> &nbsp;
+                    <button type="button" style="background-color: rgb(200, 37, 37);"
+                        (click)="eliminarInputFoto(i)">Eliminar Foto</button>
+                </div><br>
+                <button style="background-color: rgb(38, 169, 64); border-radius: 30px; " type="button"
+                    (click)="agregarNuevaFoto()">Agregar Foto
+                </button>
+            </div><br><hr>
+            <div>
+                <label>Medidor:</label>
+                <input type="text" formControlName="medidor" />
+            </div>
+            <div>
+                <label>Direccion:</label>
+                <input type="text" formControlName="direccion" />
+            </div>
+            <div>
+                <label></label>
+            </div>
+            <div>
+                <label>Denunciante:</label>
+                <input type="text" formControlName="denunciante" />
+            </div>
+            <div>
+                <label>Empleado:</label>
+                <input type="text" formControlName="empleado" />
+            </div>
+            <div>
+                <label>Latitud:</label>
+                <input type="text" formControlName="latitud" />
+            </div>
+            <div>
+                <label>Longitud:</label>
+                <input type="text" formControlName="longitud" />
+            </div>
+
+            
+            <div>   
+                <label>Reclamo Sara:</label>
+                <input type="text" formControlName="reclamoSara" />
+            </div>
+            <div>
+                <label>Localidad:</label>
+                <input type="text" formControlName="localidad" />
+            </div>
+            <div>
+                <label>Distribuidora:</label>
+                <input readonly type="text" formControlName="distribuidora" />
+            </div>
+
+
+
+        </form>
+    </div>
+    <div class="custom-dialog-actions">
+        <button mat-button (click)="cerrarDialog()">Cancelar</button>
+        <button class="button2" mat-button (click)="guardarDatos()">Guardar</button>
+    </div>
+
+
+
+</div>

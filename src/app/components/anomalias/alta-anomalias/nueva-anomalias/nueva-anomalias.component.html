@@ -1,0 +1,50 @@
+<app-dashboard></app-dashboard>
+<hr>
+<!-- Título del formulario -->
+<h1 class="form-title">Nueva Anomalía General</h1>
+<hr>
+<button class="btn btn-custom" style="margin-left: 300px;" (click)="volver()">
+    Volver
+</button>
+
+<form [formGroup]="nuevaAnomaliaForm" (submit)="guardarDatos()">
+    <div class="form-container">
+        <h2>Datos de Anomalía</h2>
+        <mat-form-field>
+            <mat-label>Código:</mat-label>
+            <input matInput formControlName="codigo" placeholder="Código">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Descripción:</mat-label>
+            <textarea matInput formControlName="descripcion" placeholder="Ej: Farola rota de la Columna del alumbrado público" rows="2"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Riesgo:</mat-label>
+            <textarea matInput formControlName="riesgo" placeholder="Ej: Riesgo de electrocución ante descargas a tierra" rows="2"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Cuantificación:</mat-label>
+            <input matInput type="number" formControlName="cuantificacion" placeholder="Ej: 00.18">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Gravedad:</mat-label>
+            <mat-select formControlName="gravedad">
+                <mat-option value="LEVE">LEVE</mat-option>
+                <mat-option value="MODERADA">MODERADA</mat-option>
+                <mat-option value="GRAVE">GRAVE</mat-option>
+                <mat-option value="INTOLERABLE">INTOLERABLE</mat-option>
+                <mat-option value="MUY GRAVE">MUY GRAVE</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- <mat-checkbox formControlName="otros">
+            Otros
+        </mat-checkbox> -->
+
+        <button class="btn-custom" mat-raised-button type="submit" color="primary">Guardar</button>
+    </div>
+</form>

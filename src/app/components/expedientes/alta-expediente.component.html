@@ -1,0 +1,65 @@
+<app-dashboard></app-dashboard>
+<br>
+<h1 class="form-title">&nbsp;&nbsp;&nbsp;Expedientes</h1>
+<hr>
+<button class="btn btn-custom" (click)="nuevoExpediente()">
+    Nuevo Expediente
+  </button>
+<!-- <div class="btn-group">
+    <button type="button" class="btn btn-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Exportar
+    </button>
+<ul class="dropdown-menu">
+    <li><a class="dropdown-item" (click)="exportToExcel()">
+        Exportar Excel &nbsp; <i class="fa fa-file-excel-o"></i>
+      </a></li>
+    <li><a class="dropdown-item" (click)="downloadAsPDF()">
+        Exportar PDF &nbsp; <i class="fa fa-file-pdf-o"></i>
+      </a></li>
+  </ul>
+</div> -->
+<button class="btn btn-custom" (click)="cambiarOrdenTabla()">
+ Cambiar Orden
+</button>
+<hr>
+
+<div class="tabla-container">
+    <table class="tabla-estilo" #tableData>
+      <thead>
+        <tr>
+          <th>iD</th>
+          <th>Nº Expte</th>
+          <th>Fecha</th>
+          <th>Distribuidora</th>
+          <th>Carátula</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of expedientesPorPagina">
+            <td>{{item.id}}</td>
+            <td>{{item.nroExpediente}}</td>
+            <td>{{item.fecha | date:'dd/MM/yyyy'}}</td>
+            <td>{{item.distribuidora}}</td>
+            <td>{{item.caratulaSeleccionada}}</td>
+            <td>
+              <button class="btn btn-custom1" (click)="eliminarFila(item)">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="paginator-container">
+  <mat-paginator class="mat-paginator" [pageSizeOptions]="[5, 15, 50, 100]"
+    (page)="onPageChange($event)"></mat-paginator>
+</div>
+<div class="boton-container">
+  <button class="boton-personalizado" style="border-bottom-left-radius: 10px;" (click)="goToFirstPage()">
+    <i class="fa fa-angle-double-left"></i>
+  </button>
+  <button class="boton-personalizado" style="border-bottom-right-radius: 10px;" (click)="goToLastPage()">
+    <i class="fa fa-angle-double-right"></i>
+  </button>
+</div>
+<br>

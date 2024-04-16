@@ -1,0 +1,67 @@
+<app-dashboard></app-dashboard>
+<br>
+<h1 class="form-title">&nbsp;&nbsp;&nbsp;Códigos Anomalías</h1>
+<hr>
+<div class="container">
+    <div class="left">
+        <button class="btn btn-custom" (click)="nuevaAnomalia()">
+            Nuevo Código Anomalía
+        </button>
+    </div>
+    <div class="right">
+        <input class="busqueda-container" type="text" [(ngModel)]="filtroCodigo" (input)="filtrarAnomalias()" placeholder="Buscar por código...">
+        <button class="btn btn-custom" (click)="cambiarOrden()">
+            Cambiar Orden
+        </button>
+    </div>
+</div>
+
+
+
+<hr>
+
+<div class="tabla-container">
+    <table class="tabla-estilo" #tableData>
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Código</th>
+                <th>Riesgo</th>
+                <th>Cuantificación</th>
+                <th>Gravedad</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let anomalia of filteredAnomalias">
+
+                <td>{{anomalia.descripcion}}</td>
+                <td>{{ anomalia.codigo }}</td>
+                <td>{{ anomalia.riesgo }}</td>
+                <td>{{ anomalia.cuantificacion }}</td>
+                <td>{{ anomalia.gravedad }}</td>
+                <td>
+
+                    <button class="btn btn-custom1" (click)="eliminarFila(anomalia)">Eliminar</button>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<div class="paginator-container">
+    <mat-paginator class="mat-paginator" [pageSizeOptions]="[100,50,15,5,1]"
+        (page)="onPageChange($event)"></mat-paginator>
+</div>
+<div class="boton-container">
+    <button class="boton-personalizado" style="border-bottom-left-radius: 10px;" (click)="goToFirstPage()">
+        <i class="fa fa-angle-double-left"></i>
+    </button>
+    <button class="boton-personalizado" style="border-bottom-right-radius: 10px;" (click)="goToLastPage()">
+        <i class="fa fa-angle-double-right"></i>
+    </button>
+</div>
+<br>

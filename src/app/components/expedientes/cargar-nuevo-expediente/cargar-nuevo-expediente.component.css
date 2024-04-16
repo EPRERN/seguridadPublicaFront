@@ -1,0 +1,178 @@
+/* Estilo para el formulario */
+form {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #81a9ad;
+    box-shadow: 30px 10px 10px rgba(0, 0, 0, 0.2); /* Agrega sombreado */
+}
+
+/* Estilo para los campos de entrada y etiquetas */
+.form-group {
+    margin-bottom: 15px;
+}
+
+
+input[type="checkbox"] {
+    margin-right: 5px;
+    /* size: 150px; */
+}
+
+/* Estilo para el botón de envío */
+button[type="submit"] {
+    background-color: #ebebeb;
+    color: #585656;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #455d5f;
+    color: #ccc;
+}
+
+/* Estilo para los espacios entre etiquetas y campos de entrada */
+
+
+/* Estilo para los mensajes de error (si es necesario) */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+/* Estilo para el título del formulario */
+.form-title {
+  margin-left: 10px;
+  font-size: 34px;
+  font-style: oblique;
+  margin-bottom: 20px;
+  color: #346369;
+}
+
+
+
+/* Cambio de color al pasar el mouse */
+.btn-custom:hover {
+    background-color: #346369; /* Nuevo color al pasar el mouse */
+}
+
+
+.formatted-span {
+    display: inline-block;
+    width: 360px;
+    height: 40px;
+    line-height: 40px; /* Alinea verticalmente el texto */
+    padding: 0 10px; /* Agrega espaciado en los lados para que coincida con el input */
+    border: 1px solid #d4da897d;
+    background-color: #f4f4f4;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2); /* Agrega sombreado */
+}
+
+
+
+/* Estilo para los campos Mat Input */
+.mat-input-container {
+    margin-bottom: 15px;
+    /* width: 100%; Ocupar todo el ancho disponible */
+  }
+  
+  .mat-form-field {
+    width: 100%; /* Ocupar todo el ancho disponible */
+  }
+  
+  .mat-form-field-label {
+    font-weight: bold;
+  }
+  
+  .mat-input-element {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: transparent; /* Para mantener el fondo transparente */
+  }
+  
+  /* Estilo para Mat Checkbox */
+  .mat-checkbox {
+    margin-right: 5px;
+  }
+  
+  /* Estilo para el botón de envío */
+  .mat-raised-button {
+    background-color: #355271;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; 
+    margin-top: 15px;
+  }
+  
+  .mat-raised-button:hover {
+    background-color: #813f3f;
+  }
+  
+  /* Estilo para los espacios entre etiquetas y campos de entrada */
+  
+  /* Estilo para los mensajes de error (si es necesario) */
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Estilo para el título del formulario */
+  
+  
+  /* Estilo base del botón */
+  .btn-custom {
+    background-color: #f4f4f4;
+    color: #000000;
+    margin: 0 10px;
+    border-color: #346369;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 19px 10px 10px rgba(0, 0, 0, 0.2);
+    /* width: 100%; Ocupar todo el ancho disponible */
+    margin-top: 15px; /* Espacio superior entre el botón y otros elementos */
+  }
+  
+  /* Cambio de color al pasar el mouse */
+  .btn-custom:hover {
+    background-color: #346369;
+  }
+  
+  .formatted-span {
+    display: inline-block;
+    width: 360px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    border: 1px solid #d4da897d;
+    background-color: #f4f4f4;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  ::ng-deep .mat-select-panel mat-option:hover {
+    background-color: #8a1f1f; 
+}
+
+ 

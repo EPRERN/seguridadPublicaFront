@@ -1,0 +1,180 @@
+
+.tabla-estilo {
+    padding: 10px;
+    /* Espaciado interno adecuado */
+    font-size: 19px;
+    /* Tamaño de la fuente */
+    line-height: 1.5;
+    /* Espaciado entre líneas */
+    background: #e0e0e0;
+    /* Fondo sólido o un gradiente */
+    /* border: 1px solid #ccc; */
+    /* Borde con un color más suave */
+
+    /* border-bottom-left-radius: 10px; */
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    /* border-radius: 20px; */
+
+    padding: 5px; /* Reducir el espaciado interno */
+    font-size: 16px; /* Reducir el tamaño de la fuente */
+    line-height: 1.5;
+    margin-left: 15px; /* Agregar margen izquierdo */
+    margin-right: 15px;
+    /* Redondeo de las esquinas */
+    box-shadow: 0 4px 6px rgba(255, 0, 0, 0.1);
+    overflow: hidden; /* Esto oculta los bordes de las celdas que sobresalen */
+}
+
+.tabla-estilo th,
+.tabla-estilo td {
+    padding: 5px; /* Reducir el espaciado interno */
+    text-align: center;
+    color: #464c43;
+    /* border-radius: 5px; */
+    border: none; /* Eliminar el borde en las celdas */
+    /* border: 1px solid #165646; Aumentar el ancho del borde */
+}
+
+.tabla-estilo th {
+    background-color: #346369;
+    font-size: 25px;
+    /* Fondo del encabezado */
+    color: #d9d8d8;
+    /* Color de texto en el encabezado */
+}
+
+.tabla-estilo tr:hover {
+    background-color: rgb(142, 192, 198);
+   
+    /* Cambio de color al pasar el ratón */
+    cursor: pointer;
+    /* Cambia el cursor al puntero */
+}
+
+.tabla-estilo tr.selected {
+    background-color: #d9d322;
+    /* Color de selección */
+    color: #333;
+    /* Color de texto en selección */
+}
+
+
+/* Nuevas reglas CSS para redondear las esquinas de la tabla */
+.tabla-estilo-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+/* Estilo para el contenedor de la tabla */
+.tabla-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estilo para la tabla */
+  .tabla-estilo {
+    flex: 1;
+    padding: 10px;
+    /* Resto de estilos para la tabla */
+  }
+  
+  /* Estilo para el paginador */
+  .mat-paginator {
+    
+    background-color: #346369; /* Color de fondo del encabezado de la tabla */
+    color: #d9d8d8; /* Color de texto del encabezado de la tabla */
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 10px;
+    border-top-left-radius: 10px; /* Redondear la parte superior izquierda */
+    border-top-right-radius: 10px; /* Redondear la parte superior derecha */
+  }
+
+
+  .paginator-container {
+    background-color: #346369; /* Color de fondo del encabezado de la tabla */
+    color: #d9d8d8; /* Color de texto del encabezado de la tabla */
+    margin-left: 15px;
+    margin-right: 15px;
+    border-top-left-radius: 0; /* No redondear la parte superior */
+    border-top-right-radius: 0; /* No redondear la parte superior */
+    border-bottom-left-radius: 10px; /* Redondear la parte inferior izquierda */
+    border-bottom-right-radius: 10px; /* Redondear la parte inferior derecha */
+  }
+
+
+  .boton-personalizado {
+    background-color: #346369; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    border: none; /* Elimina el borde */
+    padding: 10px 15px; /* Espaciado interno */
+    border-bottom-left-radius: 0px; /* Redondear la parte inferior izquierda */
+    border-bottom-right-radius: 0px; /* Redondear la parte inferior derecha */
+    cursor: pointer; /* Cambia el cursor al puntero al pasar el ratón */
+    font-size: 16px; /* Tamaño de la fuente */
+  
+  }
+  
+  .boton-personalizado:hover {
+    background-color: #234855; /* Color de fondo al pasar el ratón */
+
+  }
+
+  .boton-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+  }
+
+
+
+  
+  .btn-custom {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #346369; /* Color de fuente #346369 */
+    margin: 0 10px; /* Margen izquierdo y derecho */
+    border-color: #346369; /* Color del borde (opcional) */
+  }
+  
+  .btn-custom:hover {
+    background-color: #346369; /* Fondo con color #346369 al pasar el ratón */
+    color: #ffffff; /* Color de fuente #ffffff al pasar el ratón */
+  }
+  
+  .dropdown-menu a {
+    color: #346369; /* Color de fuente para los elementos del menú */
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #346369; /* Fondo con color #346369 al pasar el ratón */
+    color: #ffffff; /* Color de fuente #ffffff al pasar el ratón */
+  }
+
+
+
+
+
+  .btn-custom1{
+    background-color: #ffffff; /* Fondo blanco */
+    color: #ff0000; /* Color de fuente #346369 */
+    margin: 0 10px; /* Margen izquierdo y derecho */
+    border-color: #346369; /* Color del borde (opcional) */
+  }
+  .btn-custom1:hover {
+    background-color: #346369; /* Fondo con color #346369 al pasar el ratón */
+    color: #ff0303; /* Color de fuente #ffffff al pasar el ratón */
+  }
+
+
+  .form-title {
+    /* text-align: center;  */
+    font-size: 34px;   /* Tamaño de fuente grande */
+    font-style: oblique;
+    margin-bottom: 20px; /* Espacio entre el título y el formulario */
+    color: #346369; /* Color del texto, puedes personalizarlo */
+
+}
+

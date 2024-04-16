@@ -1,0 +1,22 @@
+
+<div class="popup-container">
+    <h2 class="popup-title">Agregar/Editar Gravedad</h2>
+    <form>
+        <div class="input-container">
+            <br>
+            <!-- <div class="input-container">
+                <label class="input-label" for="codigo">Código:</label>
+                <select class="input-select" id="codigo" name="codigo" [(ngModel)]="codigoSeleccionado">
+                    <option *ngFor="let opcion of opcionesCodigo" [value]="opcion">{{ opcion }}</option>
+                </select>
+            </div> -->
+         
+            <label class="input-label" for="gravedad">Gravedad:</label>
+            <select class="input-select" id="gravedad" name="gravedad" [(ngModel)]="gravedadSeleccionada">
+                <option *ngFor="let opcion of opcionesGravedad" [value]="opcion">{{ opcion }}</option>
+            </select>
+        </div>
+        <br>
+        <button class="submit-button" (click)="guardarGravedad()">Guardar</button>
+    </form>
+</div>

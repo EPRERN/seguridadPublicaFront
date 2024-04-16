@@ -1,0 +1,24 @@
+<div class="modal">
+    <button class="button1" (click)="cerrarModal()">
+        <p>Cerrar</p>
+    </button>
+    <h3><FONT color="green">La columna de "ANOMALIA" va a figurar vacía, ya que contiene 2 variables en la misma Columna Código y descripción </FONT></h3>
+    <br><br>
+    <div class="tabla-container">
+        <div class="tabla-wrapper">
+            <table class="tabla-estilo">
+                <thead>
+                    <tr>
+                        <th *ngFor="let header of headers">{{ header }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of rows">
+                        <td *ngFor="let header of headers">{{ row[header] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br>

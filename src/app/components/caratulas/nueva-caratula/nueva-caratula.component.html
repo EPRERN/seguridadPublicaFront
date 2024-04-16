@@ -1,0 +1,73 @@
+<app-dashboard></app-dashboard>
+<hr>
+<!-- Título del formulario -->
+<h1 class="form-title">Nueva Caratula</h1>
+<hr><br>
+<button class="btn btn-custom" style="margin-left: 300px;" (click)="volver()">
+    Volver
+  </button>
+<form [formGroup]="nuevaCaratulaForm" (submit)="guardarDatos()">
+    <hr>
+    <h1 style="color: #2c5256; margin-left: 45px; font-family: Cambria Math; font-size: xx-large;">Carátula Expediente
+    </h1>
+    <hr>
+    <br>
+    <mat-hint>
+        <FONT style="color: rgb(71, 24, 142); font-size: small;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            La fecha se acomodará luego de guardar el registro
+        </FONT>
+    </mat-hint>
+    <mat-form-field style="width: 350px;">
+        <mat-label>Ingrese fecha</mat-label>
+        <input matInput [matDatepicker]="picker" id="fecha" formControlName="fecha">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-datepicker #myDatepicker [startView]="'multi-year'" [startAt]="startDate" [panelClass]="'custom-datepicker'">
+    </mat-datepicker>
+
+
+    
+    <br><br>
+    <mat-form-field style="width: 350px;">
+        <mat-label>Aclaración:</mat-label>
+        <textarea matInput id="aclaracion" formControlName="aclaracion" rows="2"></textarea>
+    </mat-form-field>
+
+    <mat-form-field style="width: 350px;">
+        <mat-label>Seleccione la Distribuidora:</mat-label>
+        <mat-select id="distribuidora" formControlName="distribuidora">
+            <mat-option *ngFor="let item of distribuidoras" [value]="item">
+                {{ item.nombreDistribuidora }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width: 350px;">
+        <mat-label>Seleccione el tipo de Caratula:</mat-label>
+        <mat-select id="tipoCaratula" formControlName="tipoCaratula">
+            <mat-option *ngFor="let item of tiposCaratulas" [value]="item">
+                {{ item.tipoDeCaratula }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width: 350px;">
+        <mat-label>Seleccione la Gravedad:</mat-label>
+        <mat-select id="tipoGravedad" formControlName="tipoGravedad">
+            <mat-option value="LEVES Y MODERADAS">LEVES Y MODERADAS</mat-option>
+            <mat-option value="GRAVES E INTOLERABLES">GRAVES E INTOLERABLES</mat-option>
+          
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width: 350px;">
+        <mat-label>Caratula Seleccionada:</mat-label>
+        <input matInput id="caratulaSeleccionada" formControlName="caratulaSeleccionada" readonly>
+    </mat-form-field><hr>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- <button style="width: 240px; height: 50px;" class="btn-custom" mat-raised-button type="submit" color="primary">Guardar</button> -->
+    
+    <button style="width: 240px; height: 50px;" class="btn-custom" [disabled]="nuevaCaratulaForm.invalid" (click)="enviarCorreo()" mat-raised-button type="submit" color="primary">Enviar</button>
+</form>
+<br>

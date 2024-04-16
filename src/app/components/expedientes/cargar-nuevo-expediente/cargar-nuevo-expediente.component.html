@@ -1,0 +1,72 @@
+<app-dashboard></app-dashboard>
+<br>
+<h1 class="form-title">Nuevo Expediente</h1>
+
+<hr>
+<button class="btn btn-custom" style="margin-left: 300px;" (click)="volver()">
+    Volver
+</button>
+<form [formGroup]="nuevoExpedienteForm" (submit)="guardarDatos()">
+
+    <hr>
+    <h1 style="color: #2c5256; margin-left: 60px; font-family: Cambria Math; font-size: xx-large;">Formulario Expediente
+    </h1>
+    <hr>
+    <mat-form-field style="width: 400px;">
+        <mat-label>Ingrese fecha</mat-label>
+        <input matInput [matDatepicker]="picker" id="fecha" formControlName="fecha">
+        <mat-hint>
+            <FONT style="color: rgb(93, 27, 192); font-size: small;">La fecha se acomodará luego de guardar el registro
+            </FONT>
+        </mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br><br>
+
+
+    
+
+    <mat-form-field style="width: 400px;">
+        <mat-label>Seleccione la Caratula:</mat-label>
+        <mat-select formControlName="caratulaSeleccionada" (selectionChange)="onChangeCaratulaSeleccionada()">
+            <mat-option *ngFor="let item of nuevaCaratula" [value]="item.caratulaSeleccionada">
+                {{item.caratulaSeleccionada}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+
+  
+    <br>
+
+    <mat-form-field style="width: 400px;">
+        <mat-label>Número de Expediente</mat-label>
+        <input matInput formControlName="nroExpediente">
+    </mat-form-field>
+
+    <br>
+
+   
+    <br>
+    <mat-form-field style="width: 400px;">
+        <mat-label>Distribuidora</mat-label>
+        <input matInput formControlName="distribuidora" name="distribuidora" id="distribuidora" value="distribuidora" [disabled]="true">
+    </mat-form-field>
+
+
+
+
+
+    <hr>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <button style="width: 240px; height: 50px;" class="btn-custom" (click)="enviarCorreo()" mat-raised-button type="submit"
+        color="primary">Guardar
+    </button>
+    <br>
+
+</form>
+
+<br>

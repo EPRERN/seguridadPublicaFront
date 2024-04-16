@@ -1,0 +1,118 @@
+<app-dashboard></app-dashboard>
+<br>
+<h1 class="form-title">&nbsp;&nbsp;&nbsp;Anomalias en Expediente</h1>
+<hr>
+
+<div class="button-container">
+    <button class="btn btn-custom" matTooltip="Cargar una nueva Anomalía en Expediente MANUALMENTE"
+        matTooltipPosition="below" (click)="nuevaAnomaliaExpte()" style="margin-left: 50px;">
+        Nueva Anomalia
+    </button>
+    <button class="btn btn-custom" matTooltip="Cargar una nueva Anomalía en Expediente AUTOMÁTICAMENTE"
+        matTooltipPosition="below" style="margin-left: 180px;" (click)="cargaImagenesAnomalia()">
+        Ir a Carga Automática
+    </button>
+    <div>
+        <input class="buscador" type="text"
+            matTooltip="Puedes ingresar tambien un número que esté dentro del expediente" matTooltipPosition="below"
+            placeholder="Buscar por Número de Expediente:" id="numeroExpediente" [(ngModel)]="numeroExpediente"
+            (input)="buscarPorExpediente()">
+    </div>
+
+    <button class="btn btn-custom1" style="margin-left: 20px;"
+        (click)="eliminarElementosMarcados()">Eliminar
+        Marcados</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-custom2" 
+        [disabled]="elementosSeleccionados.length === 0" (click)="agregarGravedadSeleccionados()">
+        Cambiar Gravedad
+    </button><br>
+    
+
+
+
+</div>
+<small class="small-label">Sólo se puede cambiar la Gravedad de la   Anomalía cuando es "OTROS" &nbsp;&nbsp;&nbsp;&nbsp; <FONT size="4" color="black">?</FONT></small>   
+
+
+
+
+<br>
+
+<div class="tabla-container">
+    <table class="tabla-estilo" #tableData>
+        <thead>
+            <tr>
+                <th>
+                    <input matTooltip="Marcar todas" matTooltipPosition="above" type="checkbox"
+                        (change)="seleccionarTodos($event)">
+                </th>
+                <th>Expte</th>
+                <th>Fecha</th>
+                <th>Caso</th>
+                <th>Código</th>
+                <th>Anomalía</th>
+                <th>Gravedad</th>
+                <th>Dirección</th>
+                <th>Localidad</th>
+                <th>Fotos</th>
+                <th>Distr.</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let anomaliaExpediente of anomaliasExpedientePorPagina"
+                (click)="marcarCheckbox(anomaliaExpediente)" [class.hovered]="anomaliaExpediente.hovered"
+                [class.selected]="anomaliaExpediente.seleccionado">
+                <td>
+                    <label>
+                        <input type="checkbox" [checked]="anomaliaExpediente.seleccionado"
+                            (change)="toggleSeleccion(anomaliaExpediente)">
+                    </label>
+                </td>
+                <td>{{ anomaliaExpediente.nroExpediente }}</td>
+
+                <td>{{ formatearFecha(anomaliaExpediente.fecha) }}</td>
+
+                <td>{{ anomaliaExpediente.caso }}</td>
+                <td>{{anomaliaExpediente.codigo}}</td>
+                <td>{{anomaliaExpediente.descripcion}}</td>
+                <td>{{anomaliaExpediente.gravedad}}</td>
+                <td>{{anomaliaExpediente.direccion}}</td>
+                <td>{{anomaliaExpediente.localidad}}</td>
+
+                <td (click)="mostrarFotos(anomaliaExpediente.fotos,anomaliaExpediente.foto)">
+                    <span style="color: #35809b;;text-decoration: underline; cursor: pointer;">Ver</span>
+                </td>
+                <td>{{anomaliaExpediente.distribuidora}}</td>
+                <td>
+                    <img matTooltipPosition="above" matTooltip="Editar Registro" src="./assets/images/editIcon.png"
+                        style="height: 45px; width: 45px; cursor: pointer;" (click)="editarRegistro(anomaliaExpediente)"
+                        alt="">
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="paginator-container">
+        <mat-paginator class="mat-paginator" [pageSizeOptions]="[100,50,15,5,1]"
+            (page)="onPageChange($event)"></mat-paginator>
+
+    </div>
+    <div class="boton-container">
+        <button class="boton-personalizado" style="border-bottom-left-radius: 10px;" (click)="goToFirstPage()">
+            <i class="fa fa-angle-double-left"></i>
+        </button>
+        <button class="boton-personalizado" style="border-bottom-right-radius: 10px;" (click)="goToLastPage()">
+            <i class="fa fa-angle-double-right"></i>
+        </button>
+    </div>
+
+
+
+    <br>
+
+
+
+    

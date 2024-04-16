@@ -1,0 +1,240 @@
+<app-dashboard></app-dashboard>
+<button class="btn btn-custom" style="margin-left: 550px; width: 150px;" (click)="volver()">
+    Volver
+</button>
+<meta http-equiv="Cache-Control" content="no-store" />
+
+<br>
+<br><br>
+<div class="tabla-container">
+    <div class="tabla-wrapper">
+        <table class="tabla-estilo" #tableData>
+            <thead>
+                <tr>
+                    <th>Expte</th>
+                    <th>Fecha</th>
+                    <th>Caso</th>
+                    <th>Anomalía</th>
+                    <th>Dirección</th>
+                    <th>Localidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let anomaliaExpediente of anomaliasExpedientes | paginate: { itemsPerPage: 4, currentPage: p, id: 'tabla-pagination' }">
+                    <td>{{ anomaliaExpediente.nroExpediente }}</td>
+                    <td>{{anomaliaExpediente.fecha }}</td>
+                    <td>{{ anomaliaExpediente.caso }}</td>
+                    <td>{{anomaliaExpediente.descripcion}}</td>
+                    <td>{{anomaliaExpediente.direccion}}</td>
+                    <td>{{anomaliaExpediente.localidad}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="paginador-container">
+        <pagination-controls (pageChange)="pageChanged($event)" class="mypaginator" id="tabla-pagination"></pagination-controls>
+    </div>
+</div>
+
+<br>
+<br>
+<form [formGroup]="anomaliaExpedienteForm" (ngSubmit)="guardarDatos()">
+    <br>
+    <div>
+        <label style="text-align: center;">CARÁTULA</label>
+        <input style="border-radius: 15px;color: #2c9caf;background-color: rgb(243, 245, 245)" type="text"
+        formControlName="caratulaSeleccionada" name="caratulaSeleccionada" id="caratulaSeleccionada" 
+        placeholder="Caratula Seleccionada" readonly>
+ 
+    </div>
+    <div class="input-container">
+        
+        <div>
+            <label style="margin-left: 10px;"><FONT size="3" style="color:rgb(77, 124, 126);"><strong>Nº Expediente:</strong></FONT></label>
+            <select formControlName="nroExpediente"
+                style="width: 149px; height: 40px; color: #2c9caf; border-radius: 15px; text-align: center;">
+                <option *ngFor="let item of expedientes" [value]="item.nroExpediente">{{item.nroExpediente}}</option>
+            </select>
+        </div>
+        <div>
+            <label style="margin-left: 15px;">Caso:</label>
+            <input style="border-radius: 15px;background-color: rgb(243, 245, 245);" type="text" formControlName="caso"
+                placeholder="Caso">
+        </div>
+        <div>
+            <label style="margin-left: 15px;">Código:</label>
+            <select formControlName="codigo"
+                style="width: 140px; height: 40px; background-color: rgb(243, 245, 245); border-radius: 15px; text-align: center;">
+                <option></option>
+                <option *ngFor="let item of anomalias" [value]="item.codigo">{{item.codigo}}</option>
+            </select>
+        </div>
+
+       
+
+
+        <div>
+
+            <label>
+                Otros <input type="checkbox" style="margin-top: 20px; margin-left: 15px;" formControlName="otros">
+            </label>
+
+        </div>
+    </div>
+    <br>
+    <div>
+        <label style="margin-left: 15px;">Descripción:</label>
+        <input style="border-radius: 15px;background-color: rgb(243, 245, 245)" type="text"
+            formControlName="descripcion" name="descripcion" id="descripcion" placeholder="Descripción">
+    </div>
+    <br>
+    <div>
+        <label style="margin-left: 15px;">Riesgo:</label>
+        <input style="border-radius: 15px;background-color: rgb(243, 245, 245)" type="text"
+        formControlName="riesgo" name="riesgo" id="riesgo">
+    </div>
+
+    <br>
+    <div>
+        <label style="margin-left: 15px;">Gravedad: <FONT color="red">&nbsp;&nbsp;&nbsp;* Es obligatoria Para ser NOTIFICADA *</FONT></label>
+        <input style="border-radius: 15px;background-color: rgb(243, 245, 245)" type="text"
+            formControlName="gravedad" name="gravedad" id="gravedad" placeholder="Gravedad">
+    </div>
+    
+
+    <br>
+
+    <div class="input-container">
+
+
+
+        <div>
+            <label style="margin-left: 15px;">Ingrese fecha:</label>
+            <input matInput formControlName="fecha" (input)="formatDate($event)"
+                style="width: 400px;height: 35px; background-color: rgb(243, 245, 245); border-radius: 15px;"
+                placeholder=" / / ">
+        </div>
+
+
+
+
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+    </div>
+    <br>
+
+    <div style="display: flex; align-items: center;">
+        <label style="margin-left: 15px; font-size: larger;">Foto/s</label>
+        <button type="button"
+            style="background-color: rgb(38, 169, 64); width: 40px; border-radius: 30px; margin-left: 10px;"
+            (click)="agregarInputFoto()"><strong>+</strong></button>
+    </div>
+
+    <div formArrayName="fotos">
+        <div *ngFor="let fotoControl of fotosFormArray.controls; let i = index">
+            <input type="text" [formControlName]="i" style="width: 400px;background-color: rgb(243, 245, 245);
+            border-radius: 15px;">
+            &nbsp;&nbsp;<button type="button" style="background-color: brown;width: 40px; border-radius: 30px;"
+                (click)="eliminarInputFoto(i)"><strong>-</strong></button>
+        </div>
+    </div>
+
+    <hr>
+    <br><br>
+
+
+    <div>
+        <label style="margin-left: 15px;">Medidor: </label>
+        <input type="text" style="background-color: rgb(243, 245, 245);
+        border-radius: 15px;" formControlName="medidor" placeholder="Ingrese Medidor">
+    </div>
+    <br>
+
+    <div>
+        <label style="margin-left: 15px;"> Dirección: </label>
+        <input style="background-color: rgb(243, 245, 245);
+        border-radius: 15px;" type="text" formControlName="direccion">
+    </div>
+
+    <br>
+    <div style="display: flex; align-items: center;">
+        <label style="margin-left: 15px;">Denunciante:</label>
+
+        <label style="margin-left: 20px; color: steelblue;">
+            <input type="checkbox" formControlName="autoFillEpre"> EPRE
+        </label>
+        <br>
+
+    </div>
+    <div>
+        <input style="background-color: rgb(243, 245, 245); border-radius: 15px;" type="text"
+            formControlName="denunciante">
+    </div>
+    <br>
+    <div class="input-container">
+        <label style="margin-left: 5px;">Empleado:</label>
+        <select name="empleado" formControlName="empleado" id="empleado"
+            style="width: 350px; height: 35px;border-radius: 15px;">
+            <option value=""></option>
+            <option value="Javier Salamanca">Javier Salamanca</option>
+            <option value="Javier Tordi">Javier Tordi</option>
+            <option value="Luis Enrique Zaera">Luis Enrique Zaera</option>
+            <option value="Mara Santarelli">Mara Santarelli</option>
+        </select>
+        <label style="margin-left: 5px;">Distribuidora:</label>
+        <input style="border-radius: 15px;width: 150px; color: #2c9caf;background-color: rgb(243, 245, 245)" type="text"
+        formControlName="distribuidora" name="distribuidora" id="distribuidora" 
+        readonly>
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <br>
+    <br>
+    <div>
+        <label style="margin-left: 15px;"> Latitud: </label>
+        <input style="background-color: rgb(243, 245, 245);
+        border-radius: 15px;" type="number" formControlName="latitud">
+    </div>
+    <br>
+    <div>
+        <label style="margin-left: 15px;"> Longitud: </label>
+        <input style="background-color: rgb(243, 245, 245);
+        border-radius: 15px;" type="number" formControlName="longitud">
+    </div>
+
+    <br><br>
+    <div>
+        <label style="margin-left: 15px;"> Reclamo Sara: </label>
+        <input style="background-color: rgb(243, 245, 245);
+        border-radius: 15px;" type="number" formControlName="reclamoSara">
+    </div>
+
+
+    <br>
+    <div>
+        <label style="margin-left: 15px;"> Localidad: </label>
+        <select name="localidad" formControlName="localidad"
+            style="background-color: rgb(243, 245, 245);text-align: center;width: 300px; height: 35px;border-radius: 15px;">
+            <option *ngFor="let item of localidad" [value]="item.localidad">{{item.localidad}}</option>
+        </select>
+    </div>
+
+
+    <br><br><br><br>
+
+    <button class="button1" style="width: 400px;margin-left: 100px; background-color: azure;">Guardar</button>
+
+
+</form>
+<br>
+
+
+
+<button class="btn-scroll-top" (click)="scrollToTop()">Ir al principio</button>

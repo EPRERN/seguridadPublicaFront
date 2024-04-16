@@ -1,0 +1,57 @@
+<app-dashboard></app-dashboard>
+
+<button class="btn btn-custom" style="margin-left: 550px; width: 150px;" (click)="volver()">
+  Ver Anomalías
+</button>
+
+<div class="container">
+  <div class="card p-4">
+    <br><br><br>
+    <div class="edit-post">
+      <span class="edit-tooltip">&nbsp;&nbsp;&nbsp;&nbsp;Qué Archivos Debo subir?</span>
+      <span class="edit-icon" (click)="abrirPopupAyuda()">❔</span>
+    </div>
+
+    <h1><br></h1>
+    <h2 class="form-title mb-4">Carga de Excel</h2>
+    <hr class="linea"><br><br>
+    <h1><br></h1><br><br><br>
+
+    <br><br>
+    <label style="color: #5ba759; margin-left: 110px;"><strong>
+      <FONT size="4">Seleccione un Expediente</FONT>
+    </strong></label>
+    <select style="text-align: center; width: 245px; margin-left: 100px;" [(ngModel)]="nroExpedienteSeleccionado">
+      <option style="text-align: center" *ngFor="let item of expedientes" [value]="item.nroExpediente">
+        {{item.nroExpediente}}
+      </option>
+    </select>
+
+    <br><br>
+    <h1><br></h1><br><br>
+    <h1></h1>
+    <input type="file" #fileInput style="display: none" (change)="onFilesSelected($event)" multiple>
+
+    <button class="custom-file-upload" (click)="fileInput.click()">Seleccionar Archivo</button>
+
+    <br><br>
+    <hr class="linea">
+    <div *ngIf="fileList.length > 0" class="file-list">
+      <h3 style="color: rgb(55, 128, 134);"><u> Archivo Seleccionado:</u></h3>
+      <ul>
+        <li style="color: rgb(70, 144, 83);" *ngFor="let file of fileList; let i = index">
+          <span><strong>{{ file.name }}</strong><button class="custom-file-upload2" (click)="recargarNavegador()">Cancelar</button>
+          </span>
+        </li><br>
+      </ul><br>
+    </div><br>
+
+    <a (click)="abrirModalVistaPrevia()" class="btn2" style="cursor: pointer;">Vista Previa de Archivo</a>
+
+    <br>
+    <h1><br></h1>
+    <button class="upload-button" (click)="uploadFiles()">
+      Subir Archivos
+    </button>
+  </div>
+</div>

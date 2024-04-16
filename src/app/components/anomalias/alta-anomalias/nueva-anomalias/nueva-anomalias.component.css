@@ -1,0 +1,46 @@
+/* Estilos para el formulario */
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #757575;
+  border-radius: 5px;
+  background-color: #336485;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+/* Estilos para los campos de entrada y etiquetas */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+  color: #ffffff; /* Ajustar color de texto si es necesario */
+}
+
+/* Estilos para el botón de volver */
+.btn-custom {
+  background-color: #f4f4f4;
+  color: #000000;
+  border-color: #2e7fb5;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  margin-left: 160px;
+}
+
+.btn-custom:hover {
+  background-color: #2e7fb5;
+  color: #fff; /* Cambiar color de texto al pasar el mouse */
+}
+
+/* Estilos para el título del formulario */
+.form-title {
+  text-align: center;
+  font-size: 34px;
+  font-style: oblique;
+  margin-bottom: 20px;
+  color: #2e7fb5;
+}

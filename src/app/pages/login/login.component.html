@@ -1,0 +1,46 @@
+<div class="limiter">
+    <div class="container-login100"
+        style="background-image: url('./assets/images/pexels-daniel-shapiro-16634212.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form class="login100-form" autocomplete="off">
+
+                <span class="login100-form-title p-b-49" style="color: rgb(133, 188, 130);">
+                    Seguridad Pública
+                </span>
+                <br><br>
+                <div class="wrap-input100 m-b-23">
+                    <!-- <span class="label-input100">Usuario</span> -->
+                    <input class="input100" type="email" name="email" placeholder="Ingrese su usuario">
+                    <span class="focus-input100"></span>
+                </div>
+                <br><br>
+                <div class="wrap-input100">
+                    <!-- <span class="label-input100">Password</span> -->
+                    <input class="input100" type="password" name="password" placeholder="Ingrese su contraseña">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="text-right p-t-8 p-b-31"></div>
+                <br>
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button (click)="IraDash()" class="login100-form-btn">
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex-col-c p-t-60">
+                    <span class="txt1 p-b-17">
+                        ¿No Recuerdas la Contraseña?
+                    </span>
+
+                    <a (click)="IraRegistro()" href="/email" class="txt2">
+                        Haz click aquí
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

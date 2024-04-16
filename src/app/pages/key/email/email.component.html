@@ -1,0 +1,25 @@
+<div class="myImg">
+    <button class="mybutton1" (click)="IrALogin()">
+        Volver a Login
+        </button>
+        
+        <div class="mycard" >
+            <p-card [header]="cardHeader" [style]="{ 'color': '#346369' }">
+                <br>
+                <br>
+                <div class="input-container">
+                    <span class="p-float-label">
+                        <input pInputText type="text" id="nombre" [(ngModel)]="nombre">
+                        <label htmlFor="nombre">Ingrese su Nombre</label>
+                    </span>
+                    <span class="p-float-label">
+                        <input pInputText id="email" [style]="{'width':'450px'}" [(ngModel)]="email" />
+                        <label htmlFor="email">Email al que se enviará el link</label>
+                    </span>
+                    <button class="mybutton" (click)="IrALogin()">
+                        Enviar
+                    </button>
+                </div>
+            </p-card>
+        </div>
+

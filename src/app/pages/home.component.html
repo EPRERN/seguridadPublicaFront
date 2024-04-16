@@ -1,0 +1,35 @@
+<div class="tab-container">
+    <div class="tab-header">
+        <a href="#" class="tab-link" [class.active]="activeTab === 0" (click)="setActiveTab(0)">Luis</a>
+        <a href="#" class="tab-link" [class.active]="activeTab === 1" (click)="setActiveTab(1)">Javier</a>
+        <a href="#" class="tab-link" [class.active]="activeTab === 2" (click)="setActiveTab(2)">Mara</a>
+        <a href="#" class="tab-link" [class.active]="activeTab === 3" (click)="setActiveTab(3)">Julen</a>
+    </div>
+
+    <div class="card" *ngIf="activeTab === 0">
+        <div class="card-header">Card Title 1</div>
+        <div class="card-content">
+            Contenido de la tarjeta 1.
+        </div>
+    </div>
+
+    <div class="card" *ngIf="activeTab === 1">
+        <div class="card-header">Card Title 2</div>
+        <div class="card-content">
+            Contenido de la tarjeta 2.
+        </div>
+    </div>
+
+    <div class="card" *ngIf="activeTab === 2">
+        <div class="card-header">Card Title 3</div>
+        <div class="card-content">
+            Contenido de la tarjeta 3.
+        </div>
+    </div>
+    <div class="card" *ngIf="activeTab === 3">
+        <div class="card-header">Julen</div>
+        <div class="card-content">
+            Contenido de la tarjeta 3.
+        </div>
+    </div>
+</div>

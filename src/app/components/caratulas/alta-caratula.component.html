@@ -1,0 +1,80 @@
+<app-dashboard></app-dashboard>
+
+<br>
+<h1 class="form-title">&nbsp;&nbsp;&nbsp;Caratulas</h1>
+<hr>
+<div class="boton-container">
+  <button class="btn btn-custom" (click)="nuevaCaratula()">
+    Nueva Caratula
+  </button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Exportar
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" (click)="exportToExcel()">
+          Exportar Excel &nbsp; <i class="fa fa-file-excel-o"></i>
+        </a></li>
+      <li><a class="dropdown-item" (click)="downloadAsPDF()">
+          Exportar PDF &nbsp; <i class="fa fa-file-pdf-o"></i>
+        </a></li>
+    </ul>
+  </div>
+  <button class="btn btn-custom" (click)="cambiarOrdenTabla()">
+    Cambiar Orden
+  </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input class="buscador" type="text" placeholder="Buscar Carátulas de Expedientes..." (input)="filtrarCaratulas($event)" />
+</div>
+
+
+
+
+
+<hr>
+
+<div class="tabla-container">
+  <table class="tabla-estilo" #tableData>
+    <thead>
+      <tr>
+        <th>iD</th>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Gravedad</th>
+        <th>Carátula de Expediente</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of caratulasPorPagina">
+        <td>{{ item.id }}</td>
+        <td>{{ item.fecha | date:'dd/MM/yyyy' }}</td>
+      
+        <td [ngStyle]="{'color': item.tipoCaratula ? 'inherit' : 'red'}">
+          {{ item.tipoCaratula ? item.tipoCaratula.tipoDeCaratula : 'No Se Seleccionó una Caratula' }}
+        </td>
+        <td>{{ item.tipoGravedad }}</td>
+        <td>{{ item.caratulaSeleccionada }}</td>
+        <td>
+          <button class="btn btn-custom1" (click)="eliminarFila(item)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+<div class="paginator-container">
+  <mat-paginator class="mat-paginator" [pageSizeOptions]="[100,50,15,5,1]"
+    (page)="onPageChange($event)"></mat-paginator>
+</div>
+<div class="boton-container">
+  <button class="boton-personalizado" style="border-bottom-left-radius: 10px;" (click)="goToFirstPage()">
+    <i class="fa fa-angle-double-left"></i>
+  </button>
+  <button class="boton-personalizado" style="border-bottom-right-radius: 10px;" (click)="goToLastPage()">
+    <i class="fa fa-angle-double-right"></i>
+  </button>
+</div>
+<br>

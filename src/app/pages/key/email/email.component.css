@@ -1,0 +1,79 @@
+.mycard {
+    margin-top: 80px;
+    margin-left: 30px;
+    margin-right: 40px;
+    font-family: 'Cambria Math';
+    font-size: larger;
+    text-align: center;
+    box-shadow: 19px 20px 10px #405c83;
+}
+
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-float-label {
+    margin-right: 10px;
+}
+
+.mybutton {
+    margin-left: 45px;
+    
+    background-color: #f4f4f4;
+    color: #346369;
+    border-color: #346369;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 19px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mybutton:hover {
+    background-color: #346369; 
+    color: aliceblue;
+    transition: background-color 1s ease, color 1s ease;
+}
+
+
+
+.mybutton1 {
+    margin-left: 40px;
+    margin-top: 95px;
+    background-color: #f4f4f4;
+    color: #346369;
+    border-color: #346369;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 19px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mybutton1:hover {
+    background-color: #346369; /* Nuevo color al pasar el mouse */
+    color: aliceblue;
+    transition: background-color 1s ease, color 1s ease;
+}
+
+:host ::ng-deep .p-card .p-card-header, .mycard .p-card .p-card-header {
+    color: #346369 !important;
+    transition: background-color 1s ease, color 1s ease;
+}
+.p-card-header {
+    color: #346369; 
+    transition: background-color 1s ease, color 1s ease;
+}
+
+.p-float-label {
+    margin-right: 10px; 
+}
+
+.myImg{
+    color: #405c83;
+    background-image: url('/assets/images/backEmail.png');
+
+}

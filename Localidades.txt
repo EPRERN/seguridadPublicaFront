@@ -1,0 +1,84 @@
+1,	"Aguada Cecilio",	"8534",	16,	1
+2,	"Aguada de Guerra",	"8424",	12,	1
+3,	"Aguada Guzman"	"8333",	8,	1
+4,	"Arroyo de la Ventana",	"8168",	16,	1
+5,	"Arroyo Los Berros",	"8521",	15,	1
+6,	"Balneario El Condor",	"8501",	17	,1
+7,	"Balneario El Salado",		15,	1
+8,	"Balsa Las Perlas",	"8324",	6,	1
+9,	"Barda del Medio",	"8305",	5	,1
+10,	"Campo Grande"	,"8305"	,5,	1
+11,	"Catriel",	"8307",	2,	1
+12,	"Cerro Policia"	,"8333",	10,	1
+13,	"Cervantes",	"8326"	,10,	1
+14,	"Chelforo",	"8326"	,18	,1
+15,	"Chichinales"	,"8326",	18	,1
+16,	"Chimpay"	,"8364"	,18,	1
+17,	"Choele Choel",	"8360"	,4,	1
+18,	"Cinco Saltos",	"8303",	5	,1
+19,	"Cipolletti"	,"8324",	6,	1
+20,	"Clemente Onelli"	,"8416",	11,	1
+21,	"Coronel Belisle",	"8364",	4,	1
+22,	"Colonia Julia y Echarren",	"8138",	13	,3
+23,	"Comallo",	"8416"	,11,	1
+24,	"Cona Niyeu",	"8521",	15	,1
+25,	"Contralmirante Cordero",	"8301",	5	,1
+26,	"Contralmirante Guerrico",	"8328",	1,	1
+27,	"Darwin",	"8364"	,4,	1
+28,	"Dina Huapi"	,"8402",	3	,2
+29,	"El Bolsón",	"8430",	7	,1
+30,	"El Cain",	"8422"	,8	,1
+31,	"El Cuy"	,"8333",	10,	1
+32,	"El Foyel",	"8401",	7	,1
+33,	"El Manso",	"8430"	,7,	1
+34,	"Ferri"	"8301",	6,	1
+35,	"General Roca",	"8332",	10,	1
+36,	"General Conesa"	,"8503",	9,	1
+37,	"General Enrique Godoy"	,"8336",	18,	1
+38,	"General Fernandez Oro"	,"8326"	,6,	1
+39,	"Guardia Mitre",	"8505",	17,	1
+40,	"Ingeniero Huergo"	,"8334",	18,	1
+41,	"Ingeniero Jacobacci",	"8418",	11,	1
+42,	"J.J. Gomez",	"8333"	10	1
+43,	"La Loberia",	"8501",	17,	1
+44,	"Lago Pellegrini"	,"8305",	5,	1
+45,	"Lamarque",	"8363",	4	,1
+46,	"Las Grutas"	,"8521",	14	,1
+47,	"Los Menucos"	,"8424",	12,	1
+48,	"Luis Beltran",	"8361",	4,	1
+49,	"Mainque",	"8326"	,18,	1
+50,	"Mallin Ahogado",	"8430",	7	,1
+51,	"Maquinchao",	"8422",	12,	1
+52,	"Mencue"	,"8417",	11,	1
+53,	"Nahuel Niyeu"	,"8536",	16,	1
+54,	"Ñorquinco",	"8415",	7,	1
+55,	"Paso Cordoba",	"8333",	10,	1
+56,	"Peñas Blancas",	"8307",	2,	1
+57,	"Pilcaniyeu",	"8412",	11,	1
+58,	"Pomona",	"8378"	,4,	1
+59,	"Punta Colorada",	"8532",	15,	1
+60,	"Ramos Mexia"	,"8534",	16,	1
+61,	"Rio Chico"	,"8415",	7	,1
+62,	"Rio Colorado",	"8138",	13	,3
+63,	"Rio Villegas",	"8401",	7,	1
+64,	"San Antonio Oeste",	"8520"	,14,	1
+65,	"San Carlos de Bariloche"	,"8400"	,3,	2
+66,	"San Javier"	,"8501"	,17,	1
+67,	"Sargento Vidal",	"8305",	5,	1
+68,	"Sierra Colorada",	"8434",	12,	1
+69,	"Sierra Grande",	"8532",	15,	1
+70,	"Sierra Paileman",	"8521"	,16	,1
+71,	"Stefenelli",	"8332",	10,	1
+72,	"Valcheta",	"8536",	16,	1
+73,	"Valle Azul"	,"8336",	2,	1
+74,	"Valle Verde"	,	2	,1
+75,	"Viedma"	,"8500"	,17,	1
+76,	"Villa Alberdi","8336"	,18	,1
+77,	"Villa Llanquin"	,"8401",	7	,1
+78,	"Villa Manzano"	,"8308",	5	,1
+79,	"Villa Mascardi"	,"8401",	3	,2
+80,	"Villa Regina",	"8363",	18,	1
+81,	"Playas Doradas"	,"8532",	15,	1
+82,	"El Bolson",	"8430"	,7,	1
+83,	"Allen",	"8326"	,1,	1
+84,	"San Antonio Este",	"8521",	14	,1

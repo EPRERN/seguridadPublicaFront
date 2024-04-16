@@ -1,0 +1,234 @@
+<app-dashboard></app-dashboard>
+
+<br>
+<h1 class="form-title">&nbsp;&nbsp;&nbsp;Notificación Anomalías</h1>
+<hr>
+<br><br>
+<h1 class="ml6">
+
+
+
+    <span class="text-wrapper">
+        <span style="margin-left: 90px;" class="letters">ANOMALÍAS SIN NOTIFICAR</span>
+    </span>
+</h1>
+
+<div class="filtro-container">
+    <input type="text" [(ngModel)]="filtroNroExpediente" (keydown.enter)="aplicarFiltro()"
+        placeholder="Filtrar por Número de expediente" class="filtro-input">
+    <button (click)="aplicarFiltro()" class="filtro-button">Filtrar</button>
+</div>
+
+<br>
+<div class="tabla-container">
+    <table class="tabla-estilo" #tableData>
+        <thead>
+            <tr>
+                <th>Nro Expte</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let grupoExpediente of agruparPorExpediente(notificacionesExpedientePorPagina)">
+                <ng-container *ngIf="!grupoExpediente['oculto']">
+                    <tr>
+                        <td class="button10" (click)="toggleGrupo(grupoExpediente)" style="cursor: pointer;">
+
+                            <span *ngIf="isGrupoExpandido(grupoExpediente.nroExpediente)">
+                                <FONT size="5" color="#28475c">-&nbsp;&nbsp;</FONT>
+                            </span>
+                            <span *ngIf="!isGrupoExpandido(grupoExpediente.nroExpediente)">
+                                <FONT size="4" color="#28475c">+&nbsp;&nbsp;</FONT>
+                            </span>
+                            {{ grupoExpediente.nroExpediente }}
+                        </td>
+
+                    </tr>
+
+                    <tr *ngIf="isGrupoExpandido(grupoExpediente.nroExpediente)">
+                        <td colspan="9">
+
+                            <table>
+
+                                <thead>
+                                    <tr>
+                                        <th>Casos</th>
+                                        <th>Fecha</th>
+                                        <th>Código</th>
+                                        <th>Anomalía</th>
+                                        <th>Gravedad</th>
+                                        <th>Local</th>
+                                        <th>Distribuidora</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <ng-container *ngFor="let registro of grupoExpediente.registros">
+                                        <tr>
+                                            <td>{{ registro.caso }}</td>
+                                            <td>{{ registro.fecha }}</td>
+                                            <td>{{ registro.codigo }}</td>
+                                            <td>{{ registro.descripcion }}</td>
+                                            <td>{{ registro.gravedad }}</td>
+                                            <td>{{ registro.localidad }}</td>
+                                            <td>{{ registro.distribuidora }}</td>
+                                            <td></td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                    <tr>
+                        <td colspan="8" class="boton-notificar">
+
+
+
+                            <button class="button" *ngIf="grupoExpediente.mostrarBotonNotificacion"
+                                (click)="notificarGrupo(grupoExpediente)">
+                                <svg class="bell" viewBox="0 0 448 512">
+                                    <path
+                                        d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z">
+                                    </path>
+                                </svg>
+                                Notificar
+                                <div class="arrow">›</div>
+                            </button>
+
+
+                        </td>
+
+                    </tr>
+                    </td>
+
+                    </tr>
+                </ng-container>
+            </ng-container>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="paginator-container">
+    <mat-paginator class="mat-paginator" [pageSizeOptions]="[100,50,15,5,1]"
+        (page)="onPageChange($event)"></mat-paginator>
+</div>
+
+
+<br><br><br><br>
+<br><br><br><br>
+
+<h1 class="ml6">
+
+
+
+    <span class="text-wrapper">
+        <span style="margin-left: 90px;" class="letters">ANOMALÍAS NOTIFICADAS</span>
+    </span>
+</h1>
+
+
+<div class="filtro-container">
+    <input type="text" [(ngModel)]="filtroNroExpediente2" (keydown.enter)="filtrarAnomalias()"
+        placeholder="Filtrar por Número de expediente" class="filtro-input">
+    <button (click)="filtrarAnomalias()" class="filtro-button">Filtrar</button>
+</div>
+
+<br>
+<div class="tabla-container">
+    <table class="tabla-estilo" #tableData>
+        <thead>
+            <tr>
+                <th>
+                    <FONT size="4">ID</FONT>
+                </th>
+                <th>
+                    <FONT size="4">Expediente</FONT>
+                </th>
+                <th>
+                    <FONT size="4">Fecha</FONT>
+                </th>
+                <th>
+                    <FONT size="4">Carátula</FONT>
+                </th>
+                <th>
+                    <FONT size="4">Notificar</FONT>
+                </th>
+                <th>
+                    <FONT size="4">Denunciante</FONT>
+                </th>
+                <th>
+                    <FONT size="4">Gravedad</FONT>
+                </th>
+                <th>
+                    <FONT size="4">Riesgo</FONT>
+                </th>
+                <th>
+                    <FONT size="4">Localidad</FONT>
+                </th>
+
+
+                <!-- Agrega más encabezados según los datos que quieras mostrar -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let anomalia of anomaliasNotificadas">
+                <td>{{ anomalia.id }}</td>
+                <td>{{ anomalia.nroExpediente }}</td>
+                <td>{{anomalia.fecha}}</td>
+                <td>{{ anomalia.caratulaSeleccionada }}</td>
+                <td>{{ formatFecha(anomalia.fechaNotificacion) }}</td>
+                <td>{{ anomalia.denunciante }}</td>
+                <td>{{ anomalia.gravedad }}</td>
+                <td>{{ anomalia.riesgo }}</td>
+                <td>{{ anomalia.localidad }}</td>
+
+                <!-- Agrega más celdas según los datos que quieras mostrar -->
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="paginator-container">
+
+
+    <mat-paginator class="mat-paginator" [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChangeData($event)"></mat-paginator>
+
+
+</div>
+
+
+<!-- 
+
+
+<div>
+    <button (click)="ocultarBoton()" *ngIf="mostrarBotonNotificacion">Presionar para ocultar</button>
+    <p *ngIf="!mostrarBotonNotificacion">El botón ha sido ocultado.</p>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br><br><br>

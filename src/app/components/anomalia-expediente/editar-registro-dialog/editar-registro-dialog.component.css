@@ -1,0 +1,86 @@
+
+
+h2 {
+    color: #00796b;
+    
+}
+
+mat-dialog-content {
+    padding: 20px;
+    height: 1000px !important; /* o cualquier valor que desees */
+    background-color: lightgray; /* Añade un color de fondo diferente */
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #212121;
+    
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+button {
+    background-color: #d0d0d0;
+    color: #000000;
+   
+    border: 1px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+button:hover {
+    color: #ffffff;
+    transition: background-color 1s ease, color 1s ease; 
+    background-color: #4d1414; /* Cambia el color al pasar el mouse sobre el botón */
+}
+
+
+button[mat-button] {
+    margin-left: 560px;
+}
+
+
+.button2{
+    background-color: #4096cf;
+    color: #ff0000;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button2:hover {
+    color: #ffffff;
+    transition: background-color 1s ease, color 1s ease; 
+    background-color: #1f5275; /* Cambia el color al pasar el mouse sobre el botón */
+}
+
+
+.button2[mat-button] {
+    margin-left: 20px;
+}
+
+
+
+
+
+
+
+.custom-dialog-actions {
+    justify-content: flex-end;
+    margin-top: 20px;
+
+}
+
+
