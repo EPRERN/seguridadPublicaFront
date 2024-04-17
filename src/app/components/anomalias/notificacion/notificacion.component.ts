@@ -302,12 +302,122 @@ export class NotificacionComponent implements OnInit {
       location.reload();
     }, 4000);
 
-    // this.descargarDocumento(grupo);
-    // this.imprimirPDF(grupo);
-    // this.imprimirPDF2(grupo);
-    // this.generarExcel(grupo);
-    // this.imprimirPlanillaDeRiesgo(grupo);
+    this.descargarDocumento(grupo);
+    this.imprimirPDF(grupo);
+    this.imprimirPDF2(grupo);
+    this.generarExcel(grupo);
+    this.imprimirPlanillaDeRiesgo(grupo);
   }
+
+
+
+
+  textoDocumento2: string = '';
+  textoDocumento1: string = '';
+  descargarDocumento(notificaciones: AnomaliaExpediente[] | AnomaliaExpediente): void {
+    this['textoDocumento2'] = ''; // Accediendo a 'textoDocumento2' con notación de índice
+  
+    if (Array.isArray(notificaciones)) {
+      notificaciones.forEach((anomalia, index) => {
+        const localidadesArray = anomalia.localidad.split(',');
+        const localidades = localidadesArray.join(' - ');
+  
+        this['textoDocumento2'] += `Caso ${anomalia.caso}, Anomalía ${anomalia.codigo}, MED:${anomalia.medidor}, ${localidades}.- ${anomalia.descripcion}(Fotos ${anomalia.fotos.join(' / ')})`;
+        
+        // Agregar un salto de línea solo si no es el último registro
+        if (index < notificaciones.length - 1) {
+          this['textoDocumento2'] += '\n';
+        }
+      });
+    } else {
+      const anomalia = notificaciones;
+      const localidadesArray = anomalia.localidad.split(',');
+      const localidades = localidadesArray.join(' - ');
+  
+      this['textoDocumento2'] += `Caso ${anomalia.caso}, Anomalía ${anomalia.codigo}, MED:${anomalia.medidor}, ${localidades}.- ${anomalia.descripcion}(Fotos ${anomalia.fotos.join(' / ')})`;
+    }
+  }
+  
+  async imprimirPDF(grupo: any): Promise<void> {
+    try {
+      const pdfDoc = await PDFDocument.create();
+      const page = pdfDoc.addPage([900, 1000]);
+      const { width, height } = page.getSize();
+  
+      const fontSize = 12;
+      const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+      const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+  
+      let y = height - 50;
+  
+      const fechaPartes = grupo.fecha.split('/');
+      const dia = fechaPartes[0];
+      const mes = this.meses[parseInt(fechaPartes[1]) - 1];
+      const anio = fechaPartes[2];
+  
+      if (grupo.registros.length > 0) {
+        const distribuidora = grupo.distribuidora; // Obtener la distribuidora del grupo
+  
+        const fechaTexto = `A los ${dia} días del mes de ${mes} de ${anio}, se efectúa una inspección ocular\npor parte de Tco. (${grupo.registros.map((registro: { empleado: any; }) => registro.empleado).join(', ')})\nen representante del ENTE PROVINCIAL REGULADOR DE LA ELECTRICIDAD,\na los fines de constatar el estado de las líneas\nde Distribución Eléctrica, a ROCA-VIEDMA a cargo de la empresa \n(${distribuidora}) de la cual surgen las siguientes anomalías detalladas:\n`;
+  
+        const fechaLines = fechaTexto.split('\n');
+  
+        for (const line of fechaLines) {
+          page.drawText(line, {
+            x: 50,
+            y,
+            size: fontSize,
+            font: boldFont,
+            color: rgb(0, 0, 0),
+          });
+          y -= 15;
+        }
+  
+        // Iterar sobre cada registro del grupo
+        grupo.registros.forEach((anomaliaExpediente: any) => {
+          const textoNotificacion = `
+            Caso ${anomaliaExpediente.caso}, Anomalía ${anomaliaExpediente.codigo}, MED:${anomaliaExpediente.medidor}, ${anomaliaExpediente.localidad}.- ${anomaliaExpediente.descripcion}(Fotos ${anomaliaExpediente.fotos.join(' / ')})
+          `;
+  
+          page.drawText(textoNotificacion, {
+            x: 50,
+            y,
+            size: fontSize,
+            font,
+            color: rgb(0, 0, 0),
+          });
+          y -= 15;
+  
+          // Agregar un salto de línea después de cada registro
+          y -= 15;
+        });
+  
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'Inspeccion_Ocular.pdf';
+        link.click();
+      } else {
+        console.error('El grupo está vacío.');
+        return;
+      }
+    } catch (error) {
+      console.error('Error al imprimir el PDF:', error);
+    }
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -480,7 +590,7 @@ export class NotificacionComponent implements OnInit {
 
       const caratulaSeleccionada = grupo.registros[0].caratulaSeleccionada;
       const nroExpediente = grupo.registros[0].nroExpediente;
-      const distribuidora = this.expedientes[0].distribuidora;
+      const distribuidoras = Array.from(new Set(grupo.registros.map((registro: { distribuidora: any; }) => registro.distribuidora))).join(', ');
 
       const saludo = "\nDe mi mayor consideración: \n";
       const textoRestante = `
@@ -488,13 +598,13 @@ export class NotificacionComponent implements OnInit {
       Me dirijo a Uds. Con relación al expediente administrativo caratulado: ${caratulaSeleccionada} .- \nExpediente Nº: ${nroExpediente} .- Casos: ${casos}  de Trámite por ante este \nENTE PROVINCIAL REGULADOR DE LA ELECTRICIDAD DE LA PROVINCIA DE RÍO NEGRO,\n con asiento de funciones en calle 9 de julio Mº 174, en los que se ha dispuesto a notificarles .-
         
         La situación de peligro surgiría de las instalaciones descriptas en la denuncia efectuada
-        por el EPRE, de la cual se adjunta copia, ordénese a la Distribuidora ${distribuidora} -. 
+        por el EPRE, de la cual se adjunta copia, ordénese a la Distribuidora ${distribuidoras} -. 
         Que se constituya en el lugar señalado dentro del plazo de 24hs. de Notificada la presente, 
         y que en el mismo acto tome al menos 5 (cinco) fotografías que documenten el estado de las 
         instalaciones eléctricas que representan un concreto o inminente riesgo para la seguridad 
         pública. Asimismo se deberán instrumentar en forma inmediata las medidas técnicas idóneas 
         a efectos de normalizar la situación en caso de que se encuentre afectada la seguridad
-        pública. En caso de que dichas instalaciones no pertenezcan a la Distribuidora ${distribuidora} -.
+        pública. En caso de que dichas instalaciones no pertenezcan a la Distribuidora ${distribuidoras} -.
         deberá intimar al responsable de las mismas, en los términos del art. 6º del Régimen de 
         Suministro. La distribuidora deberá acreditar todo lo actuado en el expediente mediante 
         prueba documental idónea, dentro de los plazos establecidos conforme a la Categoría del 
@@ -540,7 +650,7 @@ export class NotificacionComponent implements OnInit {
 
 
 
-  /////////////////////////////////////////////////////////////////////////  INSPECCIÓN OCULAR
+  /////////////////////////////////////////////////////////////////////////  
 
   generarExcel(grupoExpediente: any) {
 
@@ -802,105 +912,10 @@ export class NotificacionComponent implements OnInit {
 
 
 
-  async imprimirPDF(grupo: any): Promise<void> {
 
 
-    try {
-      const pdfDoc = await PDFDocument.create();
-      const page = pdfDoc.addPage([900, 1000]);
-      const { width, height } = page.getSize();
-
-      const fontSize = 12;
-      const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-      const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-
-      let y = height - 50;
-
-      const fechaPartes = grupo.fecha.split('/');
-      const dia = fechaPartes[0];
-      const mes = this.meses[parseInt(fechaPartes[1]) - 1];
-      const anio = fechaPartes[2];
-
-      if (grupo.registros.length > 0) {
-        const anomaliaExpediente = grupo.registros[0];
-
-        const distribuidora = grupo.distribuidora; // Obtener la distribuidora del grupo
-
-        const fechaTexto = `A los ${dia} días del mes de ${mes} de ${anio}, se efectúa una inspección ocular\npor parte de Tco. (${anomaliaExpediente?.empleado})\nen representante del ENTE PROVINCIAL REGULADOR DE LA ELECTRICIDAD,\na los fines de constatar el estado de las líneas\nde Distribución Eléctrica, a ROCA-VIEDMA a cargo de la empresa \n(${distribuidora}) de la cual surgen las siguientes anomalías detalladas:\n`;
-
-        const fechaLines = fechaTexto.split('\n');
-
-        for (const line of fechaLines) {
-          page.drawText(line, {
-            x: 50,
-            y,
-            size: fontSize,
-            font: boldFont,
-            color: rgb(0, 0, 0),
-          });
-          y -= 15;
-        }
-
-        const text = this.textoDocumento2;
-        const lines = text.split('\n');
-
-        for (const line of lines) {
-          page.drawText(line, {
-            x: 50,
-            y,
-            size: fontSize,
-            font,
-            color: rgb(0, 0, 0),
-          });
-          y -= 15;
-        }
-
-        const pdfBytes = await pdfDoc.save();
-        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = 'Inspeccion_Ocular.pdf';
-        link.click();
-      } else {
-        console.error('El grupo está vacío.');
-        return;
-      }
-    } catch (error) {
-      console.error('Error al imprimir el PDF:', error);
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-  textoDocumento2: string = ''
-  textoDocumento1: string = ''
-  descargarDocumento(notificaciones: AnomaliaExpediente[] | AnomaliaExpediente): void {
-    this.textoDocumento2 = '';
-
-    if (Array.isArray(notificaciones)) {
-      notificaciones.forEach(anomalia => {
-        const localidadesArray = anomalia.localidad.split(',');
-        const localidades = localidadesArray.join(' - ');
-
-        this.textoDocumento2 += `Caso ${anomalia.caso}, Anomalía ${anomalia.codigo}, MED:${anomalia.medidor}, ${localidades}.- ${anomalia.descripcion}(Fotos ${anomalia.fotos.join(' / ')})\n\n`;
-      });
-    } else {
-      const anomalia = notificaciones;
-      const localidadesArray = anomalia.localidad.split(',');
-      const localidades = localidadesArray.join(' - ');
-
-      this.textoDocumento2 += `Caso ${anomalia.caso}, Anomalía ${anomalia.codigo}, MED:${anomalia.medidor}, ${localidades}.- ${anomalia.descripcion}(Fotos ${anomalia.fotos.join(' / ')})\n\n`;
-    }
-  }
-
+  
+  
 
 
 
